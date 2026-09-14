@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PlaceholderPage } from "@/components/placeholder-page";
+export const Route = createFileRoute("/contact")({ head: () => ({ meta: [{ title: "Contact | Afeez Amusa Onireke" }, { name: "description", content: "Start a conversation or book a consultation with Afeez Amusa Onireke." }, { property: "og:title", content: "Contact Afeez Amusa Onireke" }, { property: "og:description", content: "Start a conversation about your next project." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: () => <PlaceholderPage title="Let’s Talk" description="Share what you are building, solving, or exploring—and let’s see how Afeez can help." /> });

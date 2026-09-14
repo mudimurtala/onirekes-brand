@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PlaceholderPage } from "@/components/placeholder-page";
+export const Route = createFileRoute("/services/sap")({ head: () => ({ meta: [{ title: "SAP Consulting | Afeez Amusa Onireke" }, { name: "description", content: "SAP S/4HANA PP, QM, and RE FX consulting services." }, { property: "og:title", content: "SAP Consulting Services" }, { property: "og:description", content: "Optimise manufacturing and real estate operations." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: () => <PlaceholderPage title="SAP Consulting" description="Optimise manufacturing and real estate operations with SAP S/4HANA PP, QM, and RE FX expertise." /> });

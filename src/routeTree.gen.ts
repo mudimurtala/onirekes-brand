@@ -10,33 +10,212 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as BooksRouteImport } from './routes/books'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CoursesRouteImport } from './routes/courses'
+import { Route as MediaRouteImport } from './routes/media'
+import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesEducationRouteImport } from './routes/services.education'
+import { Route as ServicesSapRouteImport } from './routes/services.sap'
+import { Route as ServicesTilingRouteImport } from './routes/services.tiling'
+import { Route as ServicesWritingRouteImport } from './routes/services.writing'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BooksRoute = BooksRouteImport.update({
+  id: '/books',
+  path: '/books',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoursesRoute = CoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediaRoute = MediaRouteImport.update({
+  id: '/media',
+  path: '/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortfolioRoute = PortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesEducationRoute = ServicesEducationRouteImport.update({
+  id: '/education',
+  path: '/education',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesSapRoute = ServicesSapRouteImport.update({
+  id: '/sap',
+  path: '/sap',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesTilingRoute = ServicesTilingRouteImport.update({
+  id: '/tiling',
+  path: '/tiling',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesWritingRoute = ServicesWritingRouteImport.update({
+  id: '/writing',
+  path: '/writing',
+  getParentRoute: () => ServicesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/blog': typeof BlogRoute
+  '/books': typeof BooksRoute
+  '/contact': typeof ContactRoute
+  '/courses': typeof CoursesRoute
+  '/media': typeof MediaRoute
+  '/portfolio': typeof PortfolioRoute
+  '/resources': typeof ResourcesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/services/education': typeof ServicesEducationRoute
+  '/services/sap': typeof ServicesSapRoute
+  '/services/tiling': typeof ServicesTilingRoute
+  '/services/writing': typeof ServicesWritingRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/blog': typeof BlogRoute
+  '/books': typeof BooksRoute
+  '/contact': typeof ContactRoute
+  '/courses': typeof CoursesRoute
+  '/media': typeof MediaRoute
+  '/portfolio': typeof PortfolioRoute
+  '/resources': typeof ResourcesRoute
+  '/services/education': typeof ServicesEducationRoute
+  '/services/sap': typeof ServicesSapRoute
+  '/services/tiling': typeof ServicesTilingRoute
+  '/services/writing': typeof ServicesWritingRoute
+  '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/blog': typeof BlogRoute
+  '/books': typeof BooksRoute
+  '/contact': typeof ContactRoute
+  '/courses': typeof CoursesRoute
+  '/media': typeof MediaRoute
+  '/portfolio': typeof PortfolioRoute
+  '/resources': typeof ResourcesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/services/education': typeof ServicesEducationRoute
+  '/services/sap': typeof ServicesSapRoute
+  '/services/tiling': typeof ServicesTilingRoute
+  '/services/writing': typeof ServicesWritingRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/blog'
+    | '/books'
+    | '/contact'
+    | '/courses'
+    | '/media'
+    | '/portfolio'
+    | '/resources'
+    | '/services'
+    | '/services/education'
+    | '/services/sap'
+    | '/services/tiling'
+    | '/services/writing'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/blog'
+    | '/books'
+    | '/contact'
+    | '/courses'
+    | '/media'
+    | '/portfolio'
+    | '/resources'
+    | '/services/education'
+    | '/services/sap'
+    | '/services/tiling'
+    | '/services/writing'
+    | '/services'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/blog'
+    | '/books'
+    | '/contact'
+    | '/courses'
+    | '/media'
+    | '/portfolio'
+    | '/resources'
+    | '/services'
+    | '/services/education'
+    | '/services/sap'
+    | '/services/tiling'
+    | '/services/writing'
+    | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  BlogRoute: typeof BlogRoute
+  BooksRoute: typeof BooksRoute
+  ContactRoute: typeof ContactRoute
+  CoursesRoute: typeof CoursesRoute
+  MediaRoute: typeof MediaRoute
+  PortfolioRoute: typeof PortfolioRoute
+  ResourcesRoute: typeof ResourcesRoute
+  ServicesRoute: typeof ServicesRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +227,138 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/books': {
+      id: '/books'
+      path: '/books'
+      fullPath: '/books'
+      preLoaderRoute: typeof BooksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/courses': {
+      id: '/courses'
+      path: '/courses'
+      fullPath: '/courses'
+      preLoaderRoute: typeof CoursesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/media': {
+      id: '/media'
+      path: '/media'
+      fullPath: '/media'
+      preLoaderRoute: typeof MediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portfolio': {
+      id: '/portfolio'
+      path: '/portfolio'
+      fullPath: '/portfolio'
+      preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/': {
+      id: '/services/'
+      path: '/'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/education': {
+      id: '/services/education'
+      path: '/education'
+      fullPath: '/services/education'
+      preLoaderRoute: typeof ServicesEducationRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/sap': {
+      id: '/services/sap'
+      path: '/sap'
+      fullPath: '/services/sap'
+      preLoaderRoute: typeof ServicesSapRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/tiling': {
+      id: '/services/tiling'
+      path: '/tiling'
+      fullPath: '/services/tiling'
+      preLoaderRoute: typeof ServicesTilingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/writing': {
+      id: '/services/writing'
+      path: '/writing'
+      fullPath: '/services/writing'
+      preLoaderRoute: typeof ServicesWritingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
   }
 }
 
+interface ServicesRouteChildren {
+  ServicesEducationRoute: typeof ServicesEducationRoute
+  ServicesSapRoute: typeof ServicesSapRoute
+  ServicesTilingRoute: typeof ServicesTilingRoute
+  ServicesWritingRoute: typeof ServicesWritingRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
+}
+
+const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesEducationRoute: ServicesEducationRoute,
+  ServicesSapRoute: ServicesSapRoute,
+  ServicesTilingRoute: ServicesTilingRoute,
+  ServicesWritingRoute: ServicesWritingRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
+}
+
+const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
+  ServicesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  BlogRoute: BlogRoute,
+  BooksRoute: BooksRoute,
+  ContactRoute: ContactRoute,
+  CoursesRoute: CoursesRoute,
+  MediaRoute: MediaRoute,
+  PortfolioRoute: PortfolioRoute,
+  ResourcesRoute: ResourcesRoute,
+  ServicesRoute: ServicesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

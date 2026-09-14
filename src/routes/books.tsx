@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PlaceholderPage } from "@/components/placeholder-page";
+export const Route = createFileRoute("/books")({ head: () => ({ meta: [{ title: "Books | Afeez Amusa Onireke" }, { name: "description", content: "Explore books and published work by Afeez Amusa Onireke." }, { property: "og:title", content: "Books by Afeez Amusa Onireke" }, { property: "og:description", content: "Ideas and practical insights made useful." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: () => <PlaceholderPage title="Books" description="Published ideas, practical insight, and thoughtful work designed to inform and endure." /> });
