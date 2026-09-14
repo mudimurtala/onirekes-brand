@@ -19,6 +19,7 @@ import { Route as MediaRouteImport } from './routes/media'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesEducationRouteImport } from './routes/services.education'
 import { Route as ServicesSapRouteImport } from './routes/services.sap'
 import { Route as ServicesTilingRouteImport } from './routes/services.tiling'
@@ -74,6 +75,11 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ServicesRoute,
+} as any)
 const ServicesEducationRoute = ServicesEducationRouteImport.update({
   id: '/education',
   path: '/education',
@@ -110,6 +116,7 @@ export interface FileRoutesByFullPath {
   '/services/sap': typeof ServicesSapRoute
   '/services/tiling': typeof ServicesTilingRoute
   '/services/writing': typeof ServicesWritingRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -121,11 +128,11 @@ export interface FileRoutesByTo {
   '/media': typeof MediaRoute
   '/portfolio': typeof PortfolioRoute
   '/resources': typeof ResourcesRoute
-  '/services': typeof ServicesRouteWithChildren
   '/services/education': typeof ServicesEducationRoute
   '/services/sap': typeof ServicesSapRoute
   '/services/tiling': typeof ServicesTilingRoute
   '/services/writing': typeof ServicesWritingRoute
+  '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -143,6 +150,7 @@ export interface FileRoutesById {
   '/services/sap': typeof ServicesSapRoute
   '/services/tiling': typeof ServicesTilingRoute
   '/services/writing': typeof ServicesWritingRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -161,6 +169,7 @@ export interface FileRouteTypes {
     | '/services/sap'
     | '/services/tiling'
     | '/services/writing'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -172,11 +181,11 @@ export interface FileRouteTypes {
     | '/media'
     | '/portfolio'
     | '/resources'
-    | '/services'
     | '/services/education'
     | '/services/sap'
     | '/services/tiling'
     | '/services/writing'
+    | '/services'
   id:
     | '__root__'
     | '/'
@@ -193,6 +202,7 @@ export interface FileRouteTypes {
     | '/services/sap'
     | '/services/tiling'
     | '/services/writing'
+    | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -280,6 +290,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/': {
+      id: '/services/'
+      path: '/'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/services/education': {
       id: '/services/education'
       path: '/education'
@@ -316,6 +333,7 @@ interface ServicesRouteChildren {
   ServicesSapRoute: typeof ServicesSapRoute
   ServicesTilingRoute: typeof ServicesTilingRoute
   ServicesWritingRoute: typeof ServicesWritingRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 const ServicesRouteChildren: ServicesRouteChildren = {
@@ -323,6 +341,7 @@ const ServicesRouteChildren: ServicesRouteChildren = {
   ServicesSapRoute: ServicesSapRoute,
   ServicesTilingRoute: ServicesTilingRoute,
   ServicesWritingRoute: ServicesWritingRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
 }
 
 const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
