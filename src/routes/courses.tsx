@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PlaceholderPage } from "@/components/placeholder-page";
+export const Route = createFileRoute("/courses")({ head: () => ({ meta: [{ title: "Courses | Afeez Amusa Onireke" }, { name: "description", content: "Practical learning programmes and courses from Afeez Amusa Onireke." }, { property: "og:title", content: "Courses by Afeez Amusa Onireke" }, { property: "og:description", content: "Build practical capability through focused learning." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: () => <PlaceholderPage title="Courses" description="Focused learning experiences that turn knowledge into practical, professional capability." /> });
