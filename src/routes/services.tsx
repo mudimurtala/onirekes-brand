@@ -1,3 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { PlaceholderPage } from "@/components/placeholder-page";
-export const Route = createFileRoute("/services")({ head: () => ({ meta: [{ title: "Services | Afeez Amusa Onireke" }, { name: "description", content: "Writing, professional tiling, SAP consulting, and education services." }, { property: "og:title", content: "Professional Services | Afeez Amusa Onireke" }, { property: "og:description", content: "Explore four pathways to create lasting value." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: () => <PlaceholderPage title="Services" description="Four distinct disciplines, united by a commitment to clarity, precision, and lasting value." /> });
+import { Outlet, createFileRoute } from "@tanstack/react-router";
+
+export const Route = createFileRoute("/services")({ component: () => <Outlet /> });
