@@ -19,8 +19,8 @@
  */
 
 @theme inline {
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", Georgia, serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -68,11 +68,20 @@
   --color-gold: var(--gold);
   --color-gold-strong: var(--gold-strong);
   --color-gold-foreground: var(--gold-foreground);
+  --color-sun-soft: var(--sun-soft);
+  --color-sage-soft: var(--sage-soft);
+  --color-sky-soft: var(--sky-soft);
+  --color-coral-soft: var(--coral-soft);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-card: var(--shadow-card);
+  --shadow-card-hover: var(--shadow-card-hover);
+  --shadow-button: var(--shadow-button);
+  --shadow-button-hover: var(--shadow-button-hover);
 }
 
 :root {
   --radius: 0.25rem;
-  --background: oklch(0.985 0.004 82);
+  --background: oklch(0.99 0.004 84);
   --foreground: oklch(0.16 0.008 75);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.16 0.008 75);
@@ -94,10 +103,19 @@
   --ink: oklch(0.13 0.008 75);
   --ink-soft: oklch(0.2 0.01 75);
   --paper: oklch(0.985 0.004 82);
-  --paper-muted: oklch(0.93 0.012 82);
+  --paper-muted: oklch(0.955 0.012 82);
   --gold: oklch(0.72 0.12 82);
   --gold-strong: oklch(0.64 0.13 76);
   --gold-foreground: oklch(0.15 0.02 70);
+  --sun-soft: oklch(0.94 0.08 88);
+  --sage-soft: oklch(0.93 0.045 150);
+  --sky-soft: oklch(0.94 0.035 235);
+  --coral-soft: oklch(0.94 0.05 35);
+  --shadow-soft: 0 6px 20px color-mix(in oklab, var(--ink) 7%, transparent);
+  --shadow-card: 0 12px 35px color-mix(in oklab, var(--ink) 8%, transparent);
+  --shadow-card-hover: 0 22px 48px color-mix(in oklab, var(--ink) 13%, transparent);
+  --shadow-button: 0 5px 0 color-mix(in oklab, var(--ink) 18%, transparent);
+  --shadow-button-hover: 0 7px 0 color-mix(in oklab, var(--ink) 20%, transparent);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -176,10 +194,10 @@
 }
 
 @utility eyebrow {
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   line-height: 1;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -194,9 +212,9 @@
   content: "";
   position: absolute;
   inset: 0;
-  opacity: 0.28;
-  background-image: linear-gradient(135deg, transparent 48%, var(--gold) 49%, var(--gold) 51%, transparent 52%);
-  background-size: 3.5rem 3.5rem;
+  opacity: 0.2;
+  background-image: radial-gradient(circle at 2px 2px, var(--gold) 1.5px, transparent 0);
+  background-size: 1.5rem 1.5rem;
 }
 
 
