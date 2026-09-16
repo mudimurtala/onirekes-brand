@@ -169,6 +169,10 @@
 @utility site-container {
   width: min(100% - 2rem, 82rem);
   margin-inline: auto;
+
+  @media (min-width: 768px) {
+    width: min(100% - 4rem, 82rem);
+  }
 }
 
 @utility eyebrow {
@@ -195,9 +199,6 @@
   background-size: 3.5rem 3.5rem;
 }
 
-@media (min-width: 768px) {
-  @utility site-container { width: min(100% - 4rem, 82rem); }
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .reveal { animation: reveal-up 700ms ease both; }
