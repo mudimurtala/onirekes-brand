@@ -1,8 +1,7 @@
-# onirekes-brand
+# Onirekes-brand
 
 Build a premium, minimalist personal brand website homepage and global layout for Afeez Amusa Onireke, a multi disciplinary professional who is an Author, Writer, Professional Tiler, SAP PP/QM & RE FX Consultant, Educator, and Entrepreneur.
 
-Reference for structure and feel: Study the layout, pacing, and interaction patterns of https://aliabdaal.com directly. I want the same kind of warm, personal, editorial "media brand" structure: a photo led hero, a card grid answering "how can I help you" that routes visitors into different areas of expertise, a personal story section with a photo, a grid of featured work, a products or resources grid, and a newsletter capture before the footer. Do not copy Ali Abdaal's color scheme, copy his structure, spacing, typography hierarchy, and the confident, uncluttered feel of the page.
 
 Brand identity
 
@@ -64,23 +63,13 @@ Please focus only on the homepage and the global header/footer/navigation shell 
 
 Use placeholder or stock style imagery where a real photo is needed, clearly marked so it is easy to swap later.
 
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/c85f1945-1746-4211-a3d2-6964d4ac41fe).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+You need Node.js and Bun installed.
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+git clone <this repository url>
+cd <repository name>
+bun install
+bun run dev
 ```
