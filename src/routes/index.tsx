@@ -106,18 +106,20 @@ function Index() {
         </div>
       </section>
 
-      <section className="site-container py-20 md:py-28">
-        <div className="max-w-3xl"><p className="eyebrow text-gold-strong">Books, courses & resources</p><h2 className="mt-4 font-serif text-5xl leading-none md:text-7xl">Knowledge made useful.</h2></div>
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {products.map((item, index) => <article key={item.title} className={`group flex min-h-[26rem] flex-col rounded-[2rem] border border-border p-7 shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-card-hover ${index === 0 ? "bg-sun-soft" : index === 1 ? "bg-sage-soft" : "bg-sky-soft"}`}><div className="flex items-start justify-between"><span className="flex size-12 items-center justify-center rounded-2xl bg-card shadow-soft"><BookOpen className="size-5 text-gold-strong" /></span><span className="font-serif text-5xl text-foreground/15">{item.accent}</span></div><div className="mt-auto"><p className="eyebrow text-gold-strong">{item.type}</p><h3 className="mt-3 font-serif text-3xl font-semibold leading-tight">{item.title}</h3><p className="mt-4 text-sm leading-6 text-muted-foreground">{item.detail}</p><Link to={item.type === "Book" ? "/books" : "/courses"} className="mt-7 inline-flex items-center gap-2 text-sm font-bold">Explore <ArrowUpRight className="size-4" /></Link></div></article>)}
+      <section className="bg-paper py-20 md:py-28">
+        <div className="site-container">
+          <div className="max-w-3xl"><p className="eyebrow text-gold-strong">Books, courses & resources</p><h2 className="mt-4 font-serif text-5xl leading-none md:text-7xl">Knowledge made useful.</h2></div>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {products.map((item) => <article key={item.title} className="group flex min-h-[26rem] flex-col rounded-[2rem] border border-gold/25 bg-ink p-7 text-paper shadow-card transition-all duration-300 hover:-translate-y-2 hover:border-gold/60 hover:shadow-card-hover"><div className="flex items-start justify-between"><span className="flex size-12 items-center justify-center rounded-2xl bg-gold text-gold-foreground shadow-soft"><BookOpen className="size-5" /></span><span className="font-serif text-5xl text-gold/35">{item.accent}</span></div><div className="mt-auto"><p className="eyebrow text-gold">{item.type}</p><h3 className="mt-3 font-serif text-3xl font-semibold leading-tight">{item.title}</h3><p className="mt-4 text-sm leading-6 text-paper/65">{item.detail}</p><Link to={item.type === "Book" ? "/books" : "/courses"} className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-gold">Explore <ArrowUpRight className="size-4" /></Link></div></article>)}
+          </div>
         </div>
       </section>
 
-      <section className="border-y border-border bg-paper-muted py-20 md:py-28">
+      <section className="border-y border-gold/20 bg-ink py-20 text-paper md:py-28">
         <div className="site-container">
           <p className="eyebrow text-gold-strong">What collaborators say</p>
           <div className="mt-9 grid gap-10 md:grid-cols-3">
-            {["Afeez brings rare clarity to complex work. He listens carefully, thinks deeply, and delivers with conviction.", "The quality of the craftsmanship was exceptional—precise, professional, and built to last.", "His ability to connect systems knowledge with real operational needs made the engagement genuinely valuable."].map((quote, index) => <blockquote key={quote} className="rounded-[2rem] bg-card p-7 shadow-card"><Quote className="size-8 text-gold" /><p className="mt-5 font-serif text-2xl leading-9">“{quote}”</p><footer className="mt-6 text-xs font-semibold text-muted-foreground">Client testimonial <span className="text-gold-strong">0{index + 1}</span></footer></blockquote>)}
+            {["Afeez brings rare clarity to complex work. He listens carefully, thinks deeply, and delivers with conviction.", "The quality of the craftsmanship was exceptional—precise, professional, and built to last.", "His ability to connect systems knowledge with real operational needs made the engagement genuinely valuable."].map((quote, index) => <blockquote key={quote} className="rounded-[2rem] border border-gold/25 bg-paper/5 p-7 shadow-card"><Quote className="size-8 text-gold" /><p className="mt-5 font-serif text-2xl leading-9">“{quote}”</p><footer className="mt-6 text-xs font-semibold text-paper/55">Client testimonial <span className="text-gold">0{index + 1}</span></footer></blockquote>)}
           </div>
         </div>
       </section>
