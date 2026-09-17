@@ -16,10 +16,10 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-soft hover:-translate-y-0.5 hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        gold: "bg-gold text-gold-foreground shadow-button hover:-translate-y-0.5 hover:bg-gold-strong hover:shadow-button-hover",
+        gold: "bg-gold text-gold-foreground shadow-button hover:-translate-y-0.5 hover:bg-paper hover:text-ink hover:shadow-button-hover",
         ink: "bg-ink text-paper shadow-button hover:-translate-y-0.5 hover:bg-ink-soft hover:shadow-button-hover",
-        paper: "bg-paper text-ink shadow-button hover:-translate-y-0.5 hover:bg-paper-muted hover:shadow-button-hover",
-        goldOutline: "border border-gold bg-background text-foreground shadow-soft hover:-translate-y-0.5 hover:bg-gold hover:text-gold-foreground",
+        paper: "bg-paper text-ink shadow-button hover:-translate-y-0.5 hover:bg-gold hover:text-gold-foreground hover:shadow-button-hover",
+        goldOutline: "border border-gold bg-background text-foreground shadow-soft hover:-translate-y-0.5 hover:bg-gold hover:text-gold-foreground hover:border-gold",
       },
       size: {
         default: "h-11 px-5 py-2",

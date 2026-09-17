@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, BookOpen, Building2, GraduationCap, PenTool, Quote, Sparkles, Star } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BookOpen, Building2, Film, GraduationCap, Headphones, Mic, Newspaper, PenTool, Quote, Radio, Sparkles, Star, Tv } from "lucide-react";
 
 import { ImagePlaceholder } from "@/components/image-placeholder";
 import { Button } from "@/components/ui/button";
@@ -19,10 +20,10 @@ export const Route = createFileRoute("/")({
 });
 
 const pillars = [
-  { number: "01", icon: PenTool, title: "Writing & Publishing", text: "Communicate with clarity through books, ghostwriting, editing, content, and business writing.", to: "/services/writing" },
-  { number: "02", icon: Building2, title: "Professional Tiling & Construction", text: "Premium residential and commercial tiling delivered with precision and professionalism.", to: "/services/tiling" },
-  { number: "03", icon: ArrowUpRight, title: "SAP Consulting", text: "Optimise manufacturing and real estate operations with SAP S/4HANA PP, QM, and RE FX.", to: "/services/sap" },
-  { number: "04", icon: GraduationCap, title: "Education & Knowledge Products", text: "Practical books, courses, resources, training programmes, workshops, and speaking.", to: "/services/education" },
+  { number: "01", icon: PenTool, title: "Writing & Publishing", text: "Communicate with clarity through books, ghostwriting, editing, content, and business writing.", to: "/services/writing", hoverColor: "#f0c832" },
+  { number: "02", icon: Building2, title: "Professional Tiling & Construction", text: "Premium residential and commercial tiling delivered with precision and professionalism.", to: "/services/tiling", hoverColor: "#c47838" },
+  { number: "03", icon: ArrowUpRight, title: "SAP Consulting", text: "Optimise manufacturing and real estate operations with SAP S/4HANA PP, QM, and RE FX.", to: "/services/sap", hoverColor: "#d4a840" },
+  { number: "04", icon: GraduationCap, title: "Education & Knowledge Products", text: "Practical books, courses, resources, training programmes, workshops, and speaking.", to: "/services/education", hoverColor: "#f0d890" },
 ] as const;
 
 const work = [
@@ -31,11 +32,122 @@ const work = [
   { category: "Enterprise", title: "Operations made clear, connected, and scalable", image: "SAP consulting workshop or project environment" },
 ] as const;
 
+const mediaFeatures = [
+  {
+    type: "Television",
+    desc: "Broadcast television interviews and features reaching viewers nationwide.",
+    bgColor: "var(--ink)",
+    previews: [
+      { bg: "var(--gold)", icon: Tv, label: "Live Interview", fg: "var(--ink)" },
+      { bg: "rgba(255,255,255,0.07)", icon: Film, label: "Documentary", fg: "var(--paper)" },
+      { bg: "var(--gold-strong)", icon: Star, label: "Panel Show", fg: "var(--paper)" },
+      { bg: "rgba(240,200,50,0.18)", icon: Sparkles, label: "Feature Slot", fg: "var(--gold)" },
+    ],
+  },
+  {
+    type: "Radio",
+    desc: "Radio conversations reaching wide and diverse audiences across the country.",
+    bgColor: "var(--gold)",
+    previews: [
+      { bg: "var(--ink)", icon: Radio, label: "Live Broadcast", fg: "var(--gold)" },
+      { bg: "rgba(20,15,5,0.14)", icon: Mic, label: "Talk Show", fg: "var(--ink)" },
+      { bg: "var(--gold-strong)", icon: Headphones, label: "Late Night", fg: "var(--paper)" },
+      { bg: "rgba(255,255,255,0.5)", icon: Sparkles, label: "Morning Show", fg: "var(--ink)" },
+    ],
+  },
+  {
+    type: "Podcasts",
+    desc: "Deep-dive podcast episodes on writing, craft, enterprise, and ideas that matter.",
+    bgColor: "var(--coral-soft)",
+    previews: [
+      { bg: "var(--ink)", icon: Headphones, label: "Guest Episode", fg: "var(--gold)" },
+      { bg: "var(--gold)", icon: Mic, label: "Host Spot", fg: "var(--ink)" },
+      { bg: "var(--sun-soft)", icon: Star, label: "Top Rated", fg: "var(--ink)" },
+      { bg: "rgba(20,15,5,0.07)", icon: Sparkles, label: "Series Run", fg: "var(--ink)" },
+    ],
+  },
+  {
+    type: "Press",
+    desc: "Editorial features, profiles, and interviews in print and online publications.",
+    bgColor: "var(--sun-soft)",
+    previews: [
+      { bg: "var(--ink)", icon: Newspaper, label: "Feature Story", fg: "var(--gold)" },
+      { bg: "var(--gold-strong)", icon: Quote, label: "Op-Ed", fg: "var(--paper)" },
+      { bg: "var(--paper)", icon: BookOpen, label: "Profile Piece", fg: "var(--ink)" },
+      { bg: "rgba(20,15,5,0.09)", icon: PenTool, label: "Interview", fg: "var(--ink)" },
+    ],
+  },
+];
+
 const products = [
   { type: "Book", title: "A featured title by Afeez", detail: "Ideas, insights, and practical lessons for meaningful growth.", accent: "01" },
   { type: "Course", title: "Professional Tiling Masterclass", detail: "Build foundational technique, precision, and a professional practice.", accent: "02" },
   { type: "Programme", title: "SAP Operations Learning Series", detail: "Practical enterprise systems knowledge for modern organisations.", accent: "03" },
 ] as const;
+
+function PillarCard({ pillar }: { pillar: (typeof pillars)[number] }) {
+  const [hovered, setHovered] = useState(false);
+  const { number, icon: Icon, title, text, to, hoverColor } = pillar;
+
+  return (
+    <article
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        backgroundColor: hovered ? hoverColor : "var(--paper)",
+        boxShadow: hovered
+          ? "0px 30px 40px -15px rgba(194, 179, 164, 0.6)"
+          : "0px 4px 24px rgba(0,0,0,0.05)",
+        transform: hovered ? "translateY(-12px)" : "translateY(0)",
+      }}
+      className="group flex min-h-[22rem] cursor-pointer flex-col rounded-[1.75rem] p-8 transition-all duration-200 ease-in-out md:p-10"
+    >
+      <div className="flex items-start justify-between">
+        <Icon className="size-10 text-gold transition-transform duration-200 group-hover:scale-110" />
+        <span className="text-xs font-bold text-ink/30">{number}</span>
+      </div>
+      <div className="mt-auto pt-10">
+        <h3 className="max-w-md font-serif text-3xl font-semibold leading-tight text-ink md:text-4xl">{title}</h3>
+        <p className="mt-4 max-w-lg text-sm leading-6 text-ink/60">{text}</p>
+        <Link
+          to={to}
+          className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-ink underline underline-offset-4 decoration-ink/30 hover:decoration-ink"
+        >
+          Learn more
+          <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+        </Link>
+      </div>
+    </article>
+  );
+}
+
+function MoreCard() {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <article
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        backgroundColor: hovered ? "#f0c832" : "var(--paper)",
+        boxShadow: hovered
+          ? "0px 30px 40px -15px rgba(194, 179, 164, 0.6)"
+          : "0px 4px 24px rgba(0,0,0,0.05)",
+        transform: hovered ? "translateY(-12px)" : "translateY(0)",
+      }}
+      className="group flex min-h-[10rem] cursor-pointer flex-col justify-center rounded-[1.75rem] p-8 transition-all duration-200 ease-in-out md:p-10"
+    >
+      <h3 className="font-serif text-4xl font-bold leading-tight text-ink md:text-5xl">...and more!</h3>
+      <Link
+        to="/services"
+        className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-ink underline underline-offset-4 decoration-ink/30 hover:decoration-ink"
+      >
+        Explore all services
+        <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+      </Link>
+    </article>
+  );
+}
 
 function Index() {
   return (
@@ -44,7 +156,24 @@ function Index() {
         <div className="site-container grid min-h-[calc(100svh-4.5rem)] items-center gap-10 py-12 md:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:py-20">
           <div className="reveal order-2 lg:order-1">
             <div className="inline-flex items-center gap-2 rounded-full border border-gold/45 bg-gold/10 px-4 py-2 text-xs font-semibold text-paper"><Sparkles className="size-4 text-gold" /> A multidisciplinary creative professional</div>
-            <h1 className="mt-6 max-w-3xl font-serif text-[clamp(3.25rem,7vw,6.8rem)] font-semibold leading-[0.94]">Hi, I’m Afeez Amusa <span className="relative inline-block">Onireke.<span className="absolute inset-x-0 bottom-1 -z-10 h-3 rounded-full bg-gold/45 md:h-5" /></span></h1>
+            <h1 className="mt-6 max-w-3xl font-serif text-[clamp(3.25rem,7vw,6.8rem)] font-semibold leading-[0.94]">
+              <span className="relative mr-1 inline-block whitespace-nowrap">
+                Hi, I’m
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 200 16"
+                  preserveAspectRatio="none"
+                  fill="none"
+                  style={{ position: "absolute", bottom: "-0.18em", left: 0, width: "100%", overflow: "visible", pointerEvents: "none" }}
+                >
+                  <path d="M0 6 Q25 0 50 6 Q75 12 100 6 Q125 0 150 6 Q175 12 200 6" stroke="var(--gold)" strokeWidth="3" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+                  <path d="M0 12 Q25 6 50 12 Q75 18 100 12 Q125 6 150 12 Q175 18 200 12" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.45" vectorEffect="non-scaling-stroke" />
+                </svg>
+              </span>
+              <span className="font-sans text-[0.5em] align-middle">👋</span>{" "}
+              Afeez Amusa{" "}
+              <span className="relative inline-block">Onireke.<span className="absolute inset-x-0 bottom-1 -z-10 h-3 rounded-full bg-gold/45 md:h-5" /></span>
+            </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-paper/70 md:text-xl">I turn ideas, craft, and enterprise knowledge into work that helps people and organisations build lasting value.</p>
             <p className="mt-5 max-w-2xl text-sm font-semibold leading-7 text-paper/75">Author · Writer · Professional Tiler · SAP Consultant · Educator · Entrepreneur</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -60,26 +189,66 @@ function Index() {
             </div>
             <div className="absolute -bottom-4 left-5 flex items-center gap-3 rounded-2xl border border-gold/40 bg-paper px-4 py-3 text-ink shadow-card">
               <span className="flex size-9 items-center justify-center rounded-xl bg-gold"><Star className="size-4 fill-current text-gold-foreground" /></span>
-              <div><p className="text-sm font-bold">Based in Lagos</p><p className="text-xs text-muted-foreground">Working across disciplines</p></div>
+              <div><p className="text-sm font-bold">Based in Ilorin</p><p className="text-xs text-muted-foreground">Working across disciplines</p></div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-paper py-20 md:py-28">
+      <section className="bg-sun-soft py-20 md:py-28">
         <div className="site-container">
-        <div className="mb-12 grid gap-6 md:grid-cols-[0.8fr_1.2fr] md:items-end">
-          <div><p className="eyebrow text-gold-strong">Ways to work together</p><h2 className="mt-4 font-serif text-5xl leading-none md:text-7xl">How can I help?</h2></div>
-          <p className="max-w-xl leading-7 text-muted-foreground md:justify-self-end">One professional ecosystem. Four distinct pathways to solve meaningful problems, build capability, and create work that lasts.</p>
-        </div>
-        <div className="grid gap-5 md:grid-cols-2">
-          {pillars.map(({ number, icon: Icon, title, text, to }) => (
-            <article key={title} className="group flex min-h-80 flex-col rounded-[2rem] border border-gold/25 bg-ink p-7 text-paper shadow-card transition-all duration-300 hover:-translate-y-2 hover:rotate-[-0.5deg] hover:border-gold/60 hover:shadow-card-hover md:p-9">
-              <div className="flex items-start justify-between"><span className="flex size-14 items-center justify-center rounded-2xl bg-gold text-gold-foreground transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110"><Icon className="size-6" /></span><span className="text-xs font-bold text-gold">{number}</span></div>
-              <div className="mt-auto pt-12"><h3 className="max-w-md font-serif text-3xl font-semibold leading-tight md:text-4xl">{title}</h3><p className="mt-4 max-w-lg text-sm leading-6 text-paper/65">{text}</p><Link to={to} className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-gold">Learn more <span className="flex size-8 items-center justify-center rounded-full bg-gold text-gold-foreground transition-transform group-hover:translate-x-1"><ArrowRight className="size-4" /></span></Link></div>
-            </article>
-          ))}
-        </div>
+          <div className="grid gap-5 md:grid-cols-2 md:items-start">
+
+            {/* LEFT column: heading block + 2 cards below it */}
+            <div className="flex flex-col gap-5">
+              <div className="pb-3">
+                <p className="eyebrow text-gold-strong">Ways to work together</p>
+                <h2 className="mt-4 font-serif text-5xl leading-[1.05] md:text-7xl">
+                  How can<br />
+                  <span className="font-bold">I help{" "}
+                    <span className="relative inline-block whitespace-nowrap">
+                      you?
+                      <svg
+                        aria-hidden="true"
+                        viewBox="0 0 200 80"
+                        preserveAspectRatio="none"
+                        fill="none"
+                        style={{
+                          position: "absolute",
+                          top: "-0.2em",
+                          left: "-0.3em",
+                          width: "calc(100% + 0.6em)",
+                          height: "calc(100% + 0.45em)",
+                          overflow: "visible",
+                          pointerEvents: "none",
+                        }}
+                      >
+                        <path
+                          d="M 183 44 C 182 16, 146 1, 100 2 C 54 3, 17 18, 16 40 C 15 62, 53 78, 100 78 C 148 78, 180 64, 184 54"
+                          stroke="var(--gold)"
+                          strokeWidth="5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          vectorEffect="non-scaling-stroke"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                </h2>
+                <p className="mt-6 max-w-sm leading-7 text-muted-foreground">One professional ecosystem. Four distinct pathways to solve meaningful problems, build capability, and create work that lasts.</p>
+              </div>
+              <PillarCard pillar={pillars[0]} />
+              <PillarCard pillar={pillars[1]} />
+            </div>
+
+            {/* RIGHT column: 2 cards + "and more" CTA starting at top — naturally offset from left cards */}
+            <div className="flex flex-col gap-5">
+              <PillarCard pillar={pillars[2]} />
+              <PillarCard pillar={pillars[3]} />
+              <MoreCard />
+            </div>
+
+          </div>
         </div>
       </section>
 
@@ -124,9 +293,70 @@ function Index() {
         </div>
       </section>
 
-      <section className="site-container py-14 md:py-20">
-        <p className="text-center text-[0.65rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">Conversations & features</p>
-        <div className="mt-8 grid grid-cols-2 border-l border-t border-border sm:grid-cols-4">{["Television", "Radio", "Podcasts", "Press"].map((item) => <div key={item} className="flex h-24 items-center justify-center border-b border-r border-border font-serif text-xl text-muted-foreground md:h-28 md:text-2xl">{item}</div>)}</div>
+      <section className="bg-background py-14 md:py-20">
+        <div className="site-container">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="eyebrow text-gold-strong">Conversations & features</p>
+              <h2 className="mt-4 font-serif text-4xl leading-tight md:text-5xl">
+                <span className="relative mr-1 inline-block">
+                  In the media
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 200 16"
+                    preserveAspectRatio="none"
+                    fill="none"
+                    style={{ position: "absolute", bottom: "-0.22em", left: 0, width: "100%", overflow: "visible", pointerEvents: "none" }}
+                  >
+                    <path d="M0 6 Q25 0 50 6 Q75 12 100 6 Q125 0 150 6 Q175 12 200 6" stroke="var(--gold)" strokeWidth="3.5" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+                    <path d="M0 12 Q25 6 50 12 Q75 18 100 12 Q125 6 150 12 Q175 18 200 12" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.4" vectorEffect="non-scaling-stroke" />
+                  </svg>
+                </span>.
+              </h2>
+            </div>
+            <Button asChild variant="ink" className="w-fit shrink-0">
+              <Link to="/media">See all appearances <ArrowUpRight /></Link>
+            </Button>
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {mediaFeatures.map((item) => (
+              <Link
+                key={item.type}
+                to="/media"
+                className="group overflow-hidden rounded-[1.75rem] bg-paper shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-card-hover"
+              >
+                <div className="grid grid-cols-2 gap-2 p-3" style={{ backgroundColor: item.bgColor }}>
+                  {item.previews.map((preview) => {
+                    const PIcon = preview.icon;
+                    return (
+                      <div
+                        key={preview.label}
+                        className="flex flex-col items-center justify-center gap-2 rounded-2xl py-5 transition-transform duration-300 group-hover:scale-[1.03]"
+                        style={{ backgroundColor: preview.bg }}
+                      >
+                        <PIcon className="size-6" style={{ color: preview.fg }} />
+                        <span
+                          className="text-center text-[8.5px] font-bold uppercase leading-none tracking-widest"
+                          style={{ color: preview.fg, opacity: 0.75 }}
+                        >
+                          {preview.label}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="p-6">
+                  <h3 className="font-serif text-2xl font-semibold text-ink">{item.type}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.desc}</p>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-ink">
+                    View <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="site-container pb-20 md:pb-28">
