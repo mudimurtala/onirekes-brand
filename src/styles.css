@@ -107,10 +107,10 @@
   --gold: oklch(0.72 0.12 82);
   --gold-strong: oklch(0.64 0.13 76);
   --gold-foreground: oklch(0.15 0.02 70);
-  --sun-soft: oklch(0.94 0.08 88);
-  --sage-soft: oklch(0.93 0.045 150);
-  --sky-soft: oklch(0.94 0.035 235);
-  --coral-soft: oklch(0.94 0.05 35);
+  --sun-soft: oklch(0.94 0.055 88);
+  --sage-soft: oklch(0.96 0.012 88);
+  --sky-soft: oklch(0.96 0.008 82);
+  --coral-soft: oklch(0.95 0.018 72);
   --shadow-soft: 0 6px 20px color-mix(in oklab, var(--ink) 7%, transparent);
   --shadow-card: 0 12px 35px color-mix(in oklab, var(--ink) 8%, transparent);
   --shadow-card-hover: 0 22px 48px color-mix(in oklab, var(--ink) 13%, transparent);

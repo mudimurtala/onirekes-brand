@@ -29,13 +29,13 @@ const socialItems = ["Facebook", "LinkedIn", "Instagram", "YouTube", "TikTok", "
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/90 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-gold/25 bg-ink/95 text-paper backdrop-blur-xl">
       <div className="site-container flex h-18 items-center justify-between gap-6">
         <Link to="/" className="group flex items-center gap-3" aria-label="Afeez Amusa Onireke home">
           <span className="flex size-10 rotate-[-3deg] items-center justify-center rounded-xl bg-gold font-serif text-sm font-bold text-gold-foreground shadow-soft transition-transform group-hover:rotate-0 group-hover:scale-105">
             AAO
           </span>
-          <span className="hidden max-w-40 font-serif text-lg font-semibold leading-none text-foreground sm:block">Afeez Amusa Onireke</span>
+          <span className="hidden max-w-40 font-serif text-lg font-semibold leading-none text-paper sm:block">Afeez Amusa Onireke</span>
         </Link>
 
         <nav className="hidden items-center gap-5 xl:flex" aria-label="Primary navigation">
@@ -44,8 +44,8 @@ export function SiteHeader() {
               key={item.to}
               to={item.to}
               activeOptions={{ exact: item.to === "/" }}
-              className="text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground"
-              activeProps={{ className: "text-foreground" }}
+              className="text-xs font-semibold text-paper/65 transition-colors hover:text-gold"
+              activeProps={{ className: "text-gold" }}
             >
               {item.label}
             </Link>
@@ -58,7 +58,7 @@ export function SiteHeader() {
           </Button>
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="xl:hidden" aria-label="Open navigation">
+              <Button variant="goldOutline" size="icon" className="bg-ink text-paper xl:hidden" aria-label="Open navigation">
                 <Menu />
               </Button>
             </SheetTrigger>
