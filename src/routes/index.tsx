@@ -40,25 +40,25 @@ const products = [
 function Index() {
   return (
     <main>
-      <section className="overflow-hidden bg-background">
+      <section className="overflow-hidden bg-ink text-paper">
         <div className="site-container grid min-h-[calc(100svh-4.5rem)] items-center gap-10 py-12 md:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:py-20">
           <div className="reveal order-2 lg:order-1">
-            <div className="inline-flex items-center gap-2 rounded-full bg-sun-soft px-4 py-2 text-xs font-semibold text-foreground"><Sparkles className="size-4 text-gold-strong" /> A multidisciplinary creative professional</div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-gold/45 bg-gold/10 px-4 py-2 text-xs font-semibold text-paper"><Sparkles className="size-4 text-gold" /> A multidisciplinary creative professional</div>
             <h1 className="mt-6 max-w-3xl font-serif text-[clamp(3.25rem,7vw,6.8rem)] font-semibold leading-[0.94]">Hi, I’m Afeez Amusa <span className="relative inline-block">Onireke.<span className="absolute inset-x-0 bottom-1 -z-10 h-3 rounded-full bg-gold/45 md:h-5" /></span></h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl">I turn ideas, craft, and enterprise knowledge into work that helps people and organisations build lasting value.</p>
-            <p className="mt-5 max-w-2xl text-sm font-semibold leading-7 text-foreground/75">Author · Writer · Professional Tiler · SAP Consultant · Educator · Entrepreneur</p>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-paper/70 md:text-xl">I turn ideas, craft, and enterprise knowledge into work that helps people and organisations build lasting value.</p>
+            <p className="mt-5 max-w-2xl text-sm font-semibold leading-7 text-paper/75">Author · Writer · Professional Tiler · SAP Consultant · Educator · Entrepreneur</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button asChild variant="ink" size="lg"><Link to="/contact">Work with me <ArrowUpRight /></Link></Button>
-              <Button asChild variant="outline" size="lg"><Link to="/portfolio">Explore my work <ArrowRight /></Link></Button>
+              <Button asChild variant="gold" size="lg"><Link to="/contact">Work with me <ArrowUpRight /></Link></Button>
+              <Button asChild variant="goldOutline" size="lg" className="bg-ink text-paper"><Link to="/portfolio">Explore my work <ArrowRight /></Link></Button>
             </div>
           </div>
           <div className="relative order-1 mx-auto w-full max-w-lg lg:order-2">
-            <div className="absolute -left-5 top-10 size-20 rotate-[-10deg] rounded-[1.5rem] bg-sky-soft" />
-            <div className="absolute -right-4 bottom-12 size-24 rotate-12 rounded-full bg-sun-soft" />
-            <div className="relative rotate-[2deg] rounded-[2.5rem] border-8 border-card bg-card p-2 shadow-card transition-transform duration-300 hover:rotate-0">
+            <div className="absolute -left-5 top-10 size-20 rotate-[-10deg] rounded-[1.5rem] border border-gold/50 bg-gold/10" />
+            <div className="absolute -right-4 bottom-12 size-24 rotate-12 rounded-full border border-paper/15 bg-paper/5" />
+            <div className="relative rotate-[2deg] rounded-[2.5rem] border-8 border-paper bg-paper p-2 shadow-card transition-transform duration-300 hover:rotate-0">
               <ImagePlaceholder label="Warm professional portrait of Afeez" className="aspect-[4/5] min-h-0 rounded-[2rem]" />
             </div>
-            <div className="absolute -bottom-4 left-5 flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-3 shadow-card">
+            <div className="absolute -bottom-4 left-5 flex items-center gap-3 rounded-2xl border border-gold/40 bg-paper px-4 py-3 text-ink shadow-card">
               <span className="flex size-9 items-center justify-center rounded-xl bg-gold"><Star className="size-4 fill-current text-gold-foreground" /></span>
               <div><p className="text-sm font-bold">Based in Lagos</p><p className="text-xs text-muted-foreground">Working across disciplines</p></div>
             </div>
@@ -66,7 +66,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-paper-muted py-20 md:py-28">
+      <section className="bg-paper py-20 md:py-28">
         <div className="site-container">
         <div className="mb-12 grid gap-6 md:grid-cols-[0.8fr_1.2fr] md:items-end">
           <div><p className="eyebrow text-gold-strong">Ways to work together</p><h2 className="mt-4 font-serif text-5xl leading-none md:text-7xl">How can I help?</h2></div>
@@ -74,9 +74,9 @@ function Index() {
         </div>
         <div className="grid gap-5 md:grid-cols-2">
           {pillars.map(({ number, icon: Icon, title, text, to }) => (
-            <article key={title} className="group flex min-h-80 flex-col rounded-[2rem] border border-border bg-card p-7 shadow-card transition-all duration-300 hover:-translate-y-2 hover:rotate-[-0.5deg] hover:shadow-card-hover md:p-9">
-              <div className="flex items-start justify-between"><span className="flex size-14 items-center justify-center rounded-2xl bg-sun-soft transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110"><Icon className="size-6 text-gold-strong" /></span><span className="text-xs font-bold text-muted-foreground">{number}</span></div>
-              <div className="mt-auto pt-12"><h3 className="max-w-md font-serif text-3xl font-semibold leading-tight md:text-4xl">{title}</h3><p className="mt-4 max-w-lg text-sm leading-6 text-muted-foreground">{text}</p><Link to={to} className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-foreground">Learn more <span className="flex size-8 items-center justify-center rounded-full bg-ink text-paper transition-transform group-hover:translate-x-1"><ArrowRight className="size-4" /></span></Link></div>
+            <article key={title} className="group flex min-h-80 flex-col rounded-[2rem] border border-gold/25 bg-ink p-7 text-paper shadow-card transition-all duration-300 hover:-translate-y-2 hover:rotate-[-0.5deg] hover:border-gold/60 hover:shadow-card-hover md:p-9">
+              <div className="flex items-start justify-between"><span className="flex size-14 items-center justify-center rounded-2xl bg-gold text-gold-foreground transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110"><Icon className="size-6" /></span><span className="text-xs font-bold text-gold">{number}</span></div>
+              <div className="mt-auto pt-12"><h3 className="max-w-md font-serif text-3xl font-semibold leading-tight md:text-4xl">{title}</h3><p className="mt-4 max-w-lg text-sm leading-6 text-paper/65">{text}</p><Link to={to} className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-gold">Learn more <span className="flex size-8 items-center justify-center rounded-full bg-gold text-gold-foreground transition-transform group-hover:translate-x-1"><ArrowRight className="size-4" /></span></Link></div>
             </article>
           ))}
         </div>
