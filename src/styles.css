@@ -171,12 +171,19 @@
     border-color: var(--color-border);
   }
 
+  html {
+    background-color: var(--gold);
+  }
+
   body {
-    background-color: var(--color-background);
+    background-color: var(--gold);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     letter-spacing: 0;
     text-rendering: optimizeLegibility;
+    padding-top: 0.4rem;
+    padding-inline: 1rem;
+    padding-bottom: 1rem;
   }
 
   ::selection { background: var(--gold); color: var(--gold-foreground); }

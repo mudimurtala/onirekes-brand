@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, BookOpen, Building2, Film, GraduationCap, Headphones, Mic, Newspaper, PenTool, Quote, Radio, Sparkles, Star, Tv } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, Building2, Film, GraduationCap, Headphones, Mic, Newspaper, PenTool, Quote, Radio, Sparkles, Star, Tv } from "lucide-react";
 
 import { ImagePlaceholder } from "@/components/image-placeholder";
 import { Button } from "@/components/ui/button";
@@ -35,46 +35,74 @@ const work = [
 const mediaFeatures = [
   {
     type: "Television",
-    desc: "Broadcast television interviews and features reaching viewers nationwide.",
-    bgColor: "var(--ink)",
-    previews: [
-      { bg: "var(--gold)", icon: Tv, label: "Live Interview", fg: "var(--ink)" },
-      { bg: "rgba(255,255,255,0.07)", icon: Film, label: "Documentary", fg: "var(--paper)" },
-      { bg: "var(--gold-strong)", icon: Star, label: "Panel Show", fg: "var(--paper)" },
-      { bg: "rgba(240,200,50,0.18)", icon: Sparkles, label: "Feature Slot", fg: "var(--gold)" },
+    desc: "Broadcast television interviews and features reaching audiences across the country.",
+    topBg: "#1a130c",
+    bottomBg: "#c8922a",
+    bottomText: "#120d07",
+    badge: "On Screen",
+    badgeBg: "rgba(240,200,50,0.22)",
+    badgeText: "#e8c020",
+    mainIcon: Tv,
+    mainIconColor: "#f0c832",
+    floats: [
+      { icon: Film, style: { position: "absolute" as const, top: "1.5rem", left: "1.5rem", width: "4rem", height: "4rem", transform: "rotate(-12deg)", opacity: 0.22, color: "#f0d890" } },
+      { icon: Sparkles, style: { position: "absolute" as const, top: "2rem", right: "3rem", width: "2rem", height: "2rem", transform: "rotate(20deg)", opacity: 0.45, color: "#f0c832" } },
+      { icon: Star, style: { position: "absolute" as const, bottom: "1.75rem", right: "1.75rem", width: "2.5rem", height: "2.5rem", transform: "rotate(8deg)", opacity: 0.28, color: "#d4a840" } },
+      { icon: Mic, style: { position: "absolute" as const, bottom: "1.5rem", left: "3.5rem", width: "2.25rem", height: "2.25rem", transform: "rotate(-6deg)", opacity: 0.22, color: "#f0d890" } },
     ],
   },
   {
     type: "Radio",
     desc: "Radio conversations reaching wide and diverse audiences across the country.",
-    bgColor: "var(--gold)",
-    previews: [
-      { bg: "var(--ink)", icon: Radio, label: "Live Broadcast", fg: "var(--gold)" },
-      { bg: "rgba(20,15,5,0.14)", icon: Mic, label: "Talk Show", fg: "var(--ink)" },
-      { bg: "var(--gold-strong)", icon: Headphones, label: "Late Night", fg: "var(--paper)" },
-      { bg: "rgba(255,255,255,0.5)", icon: Sparkles, label: "Morning Show", fg: "var(--ink)" },
+    topBg: "#c8922a",
+    bottomBg: "#1a130c",
+    bottomText: "#f0c832",
+    badge: "On Air",
+    badgeBg: "rgba(20,10,5,0.22)",
+    badgeText: "#120d07",
+    mainIcon: Radio,
+    mainIconColor: "#120d07",
+    floats: [
+      { icon: Mic, style: { position: "absolute" as const, top: "1.25rem", left: "1.25rem", width: "4rem", height: "4rem", transform: "rotate(8deg)", opacity: 0.22, color: "#120d07" } },
+      { icon: Headphones, style: { position: "absolute" as const, top: "1.75rem", right: "2.5rem", width: "2.5rem", height: "2.5rem", transform: "rotate(-12deg)", opacity: 0.28, color: "#120d07" } },
+      { icon: Star, style: { position: "absolute" as const, bottom: "1.75rem", right: "1.75rem", width: "2rem", height: "2rem", transform: "rotate(15deg)", opacity: 0.3, color: "#120d07" } },
+      { icon: Sparkles, style: { position: "absolute" as const, bottom: "1.5rem", left: "3.5rem", width: "2.25rem", height: "2.25rem", transform: "rotate(-6deg)", opacity: 0.22, color: "#120d07" } },
     ],
   },
   {
     type: "Podcasts",
     desc: "Deep-dive podcast episodes on writing, craft, enterprise, and ideas that matter.",
-    bgColor: "var(--coral-soft)",
-    previews: [
-      { bg: "var(--ink)", icon: Headphones, label: "Guest Episode", fg: "var(--gold)" },
-      { bg: "var(--gold)", icon: Mic, label: "Host Spot", fg: "var(--ink)" },
-      { bg: "var(--sun-soft)", icon: Star, label: "Top Rated", fg: "var(--ink)" },
-      { bg: "rgba(20,15,5,0.07)", icon: Sparkles, label: "Series Run", fg: "var(--ink)" },
+    topBg: "#b84535",
+    bottomBg: "#e07040",
+    bottomText: "#1a0d08",
+    badge: "Listen Now",
+    badgeBg: "rgba(255,255,255,0.2)",
+    badgeText: "rgba(255,255,255,0.92)",
+    mainIcon: Headphones,
+    mainIconColor: "#ffffff",
+    floats: [
+      { icon: Mic, style: { position: "absolute" as const, top: "1.5rem", left: "1.5rem", width: "3.5rem", height: "3.5rem", transform: "rotate(-10deg)", opacity: 0.22, color: "#fff" } },
+      { icon: Radio, style: { position: "absolute" as const, top: "1.75rem", right: "2rem", width: "2.5rem", height: "2.5rem", transform: "rotate(15deg)", opacity: 0.22, color: "#fff" } },
+      { icon: Sparkles, style: { position: "absolute" as const, bottom: "2rem", right: "2.5rem", width: "2rem", height: "2rem", transform: "rotate(-6deg)", opacity: 0.28, color: "#fff" } },
+      { icon: Star, style: { position: "absolute" as const, bottom: "1.5rem", left: "3rem", width: "2.25rem", height: "2.25rem", transform: "rotate(8deg)", opacity: 0.22, color: "#fff" } },
     ],
   },
   {
     type: "Press",
     desc: "Editorial features, profiles, and interviews in print and online publications.",
-    bgColor: "var(--sun-soft)",
-    previews: [
-      { bg: "var(--ink)", icon: Newspaper, label: "Feature Story", fg: "var(--gold)" },
-      { bg: "var(--gold-strong)", icon: Quote, label: "Op-Ed", fg: "var(--paper)" },
-      { bg: "var(--paper)", icon: BookOpen, label: "Profile Piece", fg: "var(--ink)" },
-      { bg: "rgba(20,15,5,0.09)", icon: PenTool, label: "Interview", fg: "var(--ink)" },
+    topBg: "#3d6b52",
+    bottomBg: "#5a9970",
+    bottomText: "#0d1f15",
+    badge: "In Print",
+    badgeBg: "rgba(255,255,255,0.22)",
+    badgeText: "rgba(255,255,255,0.92)",
+    mainIcon: Newspaper,
+    mainIconColor: "#ffffff",
+    floats: [
+      { icon: PenTool, style: { position: "absolute" as const, top: "1.5rem", left: "1.5rem", width: "3.5rem", height: "3.5rem", transform: "rotate(-6deg)", opacity: 0.22, color: "#fff" } },
+      { icon: Quote, style: { position: "absolute" as const, top: "1.75rem", right: "2rem", width: "3rem", height: "3rem", transform: "rotate(10deg)", opacity: 0.22, color: "#fff" } },
+      { icon: BookOpen, style: { position: "absolute" as const, bottom: "1.75rem", right: "2rem", width: "2.5rem", height: "2.5rem", transform: "rotate(-12deg)", opacity: 0.22, color: "#fff" } },
+      { icon: Star, style: { position: "absolute" as const, bottom: "1.5rem", left: "3rem", width: "2rem", height: "2rem", transform: "rotate(6deg)", opacity: 0.28, color: "#fff" } },
     ],
   },
 ];
@@ -146,6 +174,120 @@ function MoreCard() {
         <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
       </Link>
     </article>
+  );
+}
+
+function MediaCarousel() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (dir: "left" | "right") => {
+    if (!scrollRef.current) return;
+    const card = scrollRef.current.querySelector<HTMLElement>("a");
+    const amount = card ? card.offsetWidth + 20 : 440;
+    scrollRef.current.scrollBy({ left: dir === "right" ? amount : -amount, behavior: "smooth" });
+  };
+
+  return (
+    <section className="bg-background py-14 md:py-20">
+      <div className="site-container">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="eyebrow text-gold-strong">Conversations & features</p>
+            <h2 className="mt-4 font-serif text-4xl leading-tight md:text-5xl">
+              <span className="relative mr-1 inline-block">
+                In the media
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 200 16"
+                  preserveAspectRatio="none"
+                  fill="none"
+                  style={{ position: "absolute", bottom: "-0.22em", left: 0, width: "100%", overflow: "visible", pointerEvents: "none" }}
+                >
+                  <path d="M0 6 Q25 0 50 6 Q75 12 100 6 Q125 0 150 6 Q175 12 200 6" stroke="var(--gold)" strokeWidth="3.5" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+                  <path d="M0 12 Q25 6 50 12 Q75 18 100 12 Q125 6 150 12 Q175 18 200 12" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.4" vectorEffect="non-scaling-stroke" />
+                </svg>
+              </span>.
+            </h2>
+          </div>
+          <div className="flex shrink-0 items-center gap-3">
+            <button
+              onClick={() => scroll("left")}
+              className="flex size-12 items-center justify-center rounded-full bg-gold text-gold-foreground shadow-button transition-all duration-200 hover:-translate-y-0.5 hover:bg-gold-strong hover:shadow-button-hover"
+              aria-label="Scroll left"
+            >
+              <ArrowLeft className="size-5" />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              className="flex size-12 items-center justify-center rounded-full bg-gold text-gold-foreground shadow-button transition-all duration-200 hover:-translate-y-0.5 hover:bg-gold-strong hover:shadow-button-hover"
+              aria-label="Scroll right"
+            >
+              <ArrowRight className="size-5" />
+            </button>
+          </div>
+        </div>
+
+        <div
+          ref={scrollRef}
+          className="mt-12 flex gap-5 overflow-x-auto pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          style={{ scrollSnapType: "x mandatory" }}
+        >
+          {mediaFeatures.map((card) => {
+            const MainIcon = card.mainIcon;
+            return (
+              <Link
+                key={card.type}
+                to="/media"
+                className="group flex-shrink-0 overflow-hidden rounded-[1.75rem] shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-card-hover"
+                style={{ width: "min(85vw, 420px)", scrollSnapAlign: "start" }}
+              >
+                {/* Coloured top panel */}
+                <div
+                  className="relative flex items-center justify-center overflow-hidden"
+                  style={{ backgroundColor: card.topBg, height: "20rem" }}
+                >
+                  {card.floats.map((f, i) => {
+                    const FIcon = f.icon;
+                    return <FIcon key={i} style={f.style} />;
+                  })}
+                  <div
+                    className="absolute rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest"
+                    style={{ top: "1rem", right: "1rem", backgroundColor: card.badgeBg, color: card.badgeText }}
+                  >
+                    {card.badge}
+                  </div>
+                  <div className="relative z-10 flex flex-col items-center gap-4 px-6 text-center">
+                    <MainIcon
+                      className="transition-transform duration-300 group-hover:scale-110"
+                      style={{ width: "4.5rem", height: "4.5rem", color: card.mainIconColor }}
+                    />
+                    <p className="font-serif text-4xl font-bold leading-tight" style={{ color: card.mainIconColor }}>
+                      {card.type}
+                    </p>
+                  </div>
+                </div>
+                {/* Coloured bottom panel */}
+                <div className="p-7" style={{ backgroundColor: card.bottomBg }}>
+                  <h3 className="font-serif text-2xl font-bold leading-tight" style={{ color: card.bottomText }}>
+                    {card.type}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6" style={{ color: card.bottomText, opacity: 0.72 }}>
+                    {card.desc}
+                  </p>
+                  <span
+                    className="mt-6 inline-flex items-center gap-2 text-sm font-bold underline underline-offset-4"
+                    style={{ color: card.bottomText }}
+                  >
+                    View{" "}
+                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -293,71 +435,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-background py-14 md:py-20">
-        <div className="site-container">
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="eyebrow text-gold-strong">Conversations & features</p>
-              <h2 className="mt-4 font-serif text-4xl leading-tight md:text-5xl">
-                <span className="relative mr-1 inline-block">
-                  In the media
-                  <svg
-                    aria-hidden="true"
-                    viewBox="0 0 200 16"
-                    preserveAspectRatio="none"
-                    fill="none"
-                    style={{ position: "absolute", bottom: "-0.22em", left: 0, width: "100%", overflow: "visible", pointerEvents: "none" }}
-                  >
-                    <path d="M0 6 Q25 0 50 6 Q75 12 100 6 Q125 0 150 6 Q175 12 200 6" stroke="var(--gold)" strokeWidth="3.5" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-                    <path d="M0 12 Q25 6 50 12 Q75 18 100 12 Q125 6 150 12 Q175 18 200 12" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.4" vectorEffect="non-scaling-stroke" />
-                  </svg>
-                </span>.
-              </h2>
-            </div>
-            <Button asChild variant="ink" className="w-fit shrink-0">
-              <Link to="/media">See all appearances <ArrowUpRight /></Link>
-            </Button>
-          </div>
-
-          <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {mediaFeatures.map((item) => (
-              <Link
-                key={item.type}
-                to="/media"
-                className="group overflow-hidden rounded-[1.75rem] bg-paper shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-card-hover"
-              >
-                <div className="grid grid-cols-2 gap-2 p-3" style={{ backgroundColor: item.bgColor }}>
-                  {item.previews.map((preview) => {
-                    const PIcon = preview.icon;
-                    return (
-                      <div
-                        key={preview.label}
-                        className="flex flex-col items-center justify-center gap-2 rounded-2xl py-5 transition-transform duration-300 group-hover:scale-[1.03]"
-                        style={{ backgroundColor: preview.bg }}
-                      >
-                        <PIcon className="size-6" style={{ color: preview.fg }} />
-                        <span
-                          className="text-center text-[8.5px] font-bold uppercase leading-none tracking-widest"
-                          style={{ color: preview.fg, opacity: 0.75 }}
-                        >
-                          {preview.label}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className="p-6">
-                  <h3 className="font-serif text-2xl font-semibold text-ink">{item.type}</h3>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.desc}</p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-ink">
-                    View <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <MediaCarousel />
 
       <section className="site-container pb-20 md:pb-28">
         <div className="grid overflow-hidden rounded-[2.5rem] bg-ink text-paper shadow-card md:grid-cols-[1.2fr_0.8fr]">

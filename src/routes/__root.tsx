@@ -119,7 +119,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen bg-background">
+      <div className="bg-background rounded-[1.25rem]" style={{ overflow: "clip" }}>
         <SiteHeader />
         <Outlet />
         <SiteFooter />
