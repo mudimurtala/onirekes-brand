@@ -177,6 +177,19 @@ function MoreCard() {
   );
 }
 
+function WaveDivider({ from, to }: { from: string; to: string }) {
+  return (
+    <div aria-hidden="true" className="pointer-events-none -mt-px" style={{ height: "64px", backgroundColor: from }}>
+      <svg viewBox="0 0 1440 64" preserveAspectRatio="none" className="block h-full w-full">
+        <path
+          d="M0,32 C240,64 480,0 720,32 C960,64 1200,0 1440,32 L1440,64 L0,64 Z"
+          style={{ fill: to }}
+        />
+      </svg>
+    </div>
+  );
+}
+
 function MediaCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
