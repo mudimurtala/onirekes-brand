@@ -80,8 +80,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "author", content: "Afeez Amusa Onireke" },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Afeez Amusa Onireke" },
+      { property: "og:url", content: "https://afeezamusaonireke.netlify.app" },
+      { property: "og:image", content: "https://afeezamusaonireke.netlify.app/images/afeez-portrait.webp" },
+      { property: "og:image:width", content: "1254" },
+      { property: "og:image:height", content: "1237" },
+      { property: "og:image:alt", content: "Afeez Amusa Onireke — Author, Consultant & Educator" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@OnirekeAAO" },
+      { name: "twitter:image", content: "https://afeezamusaonireke.netlify.app/images/afeez-portrait.webp" },
     ],
     links: [
       {
