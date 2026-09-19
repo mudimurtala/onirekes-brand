@@ -120,7 +120,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="bg-background rounded-[1.25rem]" style={{ overflow: "clip" }}>
+      <div className="bg-gold rounded-[1.25rem]" style={{ overflow: "clip" }}>
         <SiteHeader />
         <Outlet />
         <SiteFooter />

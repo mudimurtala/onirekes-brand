@@ -113,7 +113,7 @@ const products = [
   { type: "Programme", title: "SAP Operations Learning Series", detail: "Practical enterprise systems knowledge for modern organisations.", accent: "03" },
 ] as const;
 
-function PillarCard({ pillar }: { pillar: (typeof pillars)[number] }) {
+function PillarCard({ pillar, className }: { pillar: (typeof pillars)[number]; className?: string }) {
   const [hovered, setHovered] = useState(false);
   const { number, icon: Icon, title, text, to, hoverColor } = pillar;
 
@@ -128,7 +128,7 @@ function PillarCard({ pillar }: { pillar: (typeof pillars)[number] }) {
           : "0px 4px 24px rgba(0,0,0,0.05)",
         transform: hovered ? "translateY(-12px)" : "translateY(0)",
       }}
-      className="group flex min-h-[22rem] cursor-pointer flex-col rounded-[1.75rem] p-8 transition-all duration-200 ease-in-out md:p-10"
+      className={`group flex min-h-[22rem] cursor-pointer flex-col rounded-[1.75rem] p-8 transition-all duration-200 ease-in-out md:p-10${className ? ` ${className}` : ""}`}
     >
       <div className="flex items-start justify-between">
         <Icon className="size-10 text-gold transition-transform duration-200 group-hover:scale-110" />
@@ -201,9 +201,9 @@ function MediaCarousel() {
   };
 
   return (
-    <section className="bg-background py-14 md:py-20">
+    <section className="rounded-[1.5rem] bg-background py-14 lg:rounded-none md:py-20">
       <div className="site-container">
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex items-end justify-between gap-5">
           <div>
             <p className="eyebrow text-gold-strong">Conversations & features</p>
             <h2 className="mt-4 font-serif text-4xl leading-tight md:text-5xl">
@@ -306,12 +306,33 @@ function MediaCarousel() {
 
 function Index() {
   return (
-    <main>
-      <section className="overflow-hidden bg-ink text-paper">
-        <div className="site-container grid min-h-[calc(100svh-4.5rem)] items-center gap-10 py-12 md:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:py-20">
-          <div className="reveal order-2 lg:order-1">
-            <div className="inline-flex items-center gap-2 rounded-full border border-gold/45 bg-gold/10 px-4 py-2 text-xs font-semibold text-paper"><Sparkles className="size-4 text-gold" /> A multidisciplinary creative professional</div>
-            <h1 className="mt-6 max-w-3xl font-serif text-[clamp(3.25rem,7vw,6.8rem)] font-semibold leading-[0.94]">
+    <main className="bg-gold lg:bg-transparent">
+      <section className="overflow-hidden rounded-b-[1.5rem] bg-ink text-paper lg:rounded-none">
+        <div className="site-container grid pt-4 pb-8 lg:min-h-[calc(100svh-4.5rem)] lg:items-center lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:py-20">
+
+          {/* Portrait — top on mobile, right on desktop */}
+          <div className="relative order-1 mx-auto w-full max-w-[195px] lg:order-2 lg:max-w-lg">
+            <div className="absolute -left-5 top-10 hidden size-20 rotate-[-10deg] rounded-[1.5rem] border border-gold/50 bg-gold/10 lg:block" />
+            <div className="absolute -right-4 bottom-12 hidden size-24 rotate-12 rounded-full border border-paper/15 bg-paper/5 lg:block" />
+            <div className="relative lg:rotate-[2deg] lg:rounded-[2.5rem] lg:border-8 lg:border-paper lg:bg-paper lg:p-2 lg:shadow-card lg:transition-transform lg:duration-300 lg:hover:rotate-0">
+              <img
+                src="/images/afeez-portrait.webp"
+                alt="Afeez Amusa Onireke — professional portrait"
+                className="aspect-[4/5] w-full object-contain lg:rounded-[2rem]"
+              />
+            </div>
+            <div className="absolute -bottom-4 left-5 hidden items-center gap-3 rounded-2xl border border-gold/40 bg-paper px-4 py-3 text-ink shadow-card lg:flex">
+              <span className="flex size-9 items-center justify-center rounded-xl bg-gold"><Star className="size-4 fill-current text-gold-foreground" /></span>
+              <div><p className="text-sm font-bold">Based in Ilorin</p><p className="text-xs text-muted-foreground">Working across disciplines</p></div>
+            </div>
+          </div>
+
+          {/* Text — below image on mobile, left on desktop */}
+          <div className="reveal order-2 pt-4 text-center lg:order-1 lg:pt-0 lg:text-left">
+            <div className="hidden items-center gap-2 rounded-full border border-gold/45 bg-gold/10 px-4 py-2 text-xs font-semibold text-paper lg:inline-flex">
+              <Sparkles className="size-4 text-gold" /> A multidisciplinary creative professional
+            </div>
+            <h1 className="max-w-3xl font-serif text-[2rem] font-semibold leading-[0.96] lg:mt-6 lg:text-[clamp(3.25rem,7vw,6.8rem)] lg:leading-[0.94]">
               <span className="relative mr-1 inline-block whitespace-nowrap">
                 Hi, I’m
                 <svg
@@ -325,137 +346,306 @@ function Index() {
                   <path d="M0 12 Q25 6 50 12 Q75 18 100 12 Q125 6 150 12 Q175 18 200 12" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.45" vectorEffect="non-scaling-stroke" />
                 </svg>
               </span>
-              <span className="font-sans text-[0.5em] align-middle">👋</span>{" "}
+              <span className="align-middle font-sans text-[0.5em]">👋</span>{" "}
               Afeez Amusa{" "}
               <span className="relative inline-block">Onireke.<span className="absolute inset-x-0 bottom-1 -z-10 h-3 rounded-full bg-gold/45 md:h-5" /></span>
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-paper/70 md:text-xl">I turn ideas, craft, and enterprise knowledge into work that helps people and organisations build lasting value.</p>
-            <p className="mt-5 max-w-2xl text-sm font-semibold leading-7 text-paper/75">Author · Writer · Professional Tiler · SAP Consultant · Educator · Entrepreneur</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-paper/70 lg:mt-6 lg:text-xl lg:leading-7">I turn ideas, craft, and enterprise knowledge into work that helps people and organisations build lasting value.</p>
+            <p className="mt-2 max-w-2xl text-xs font-semibold leading-6 text-paper/75 lg:mt-4 lg:text-sm lg:leading-7">Author · Writer · Professional Tiler · SAP Consultant · Educator · Entrepreneur</p>
+            <div className="mt-8 hidden flex-wrap justify-center gap-3 lg:flex lg:justify-start">
               <Button asChild variant="gold" size="lg"><Link to="/contact">Work with me <ArrowUpRight /></Link></Button>
               <Button asChild variant="goldOutline" size="lg" className="bg-ink text-paper"><Link to="/portfolio">Explore my work <ArrowRight /></Link></Button>
             </div>
           </div>
-          <div className="relative order-1 mx-auto w-full max-w-lg lg:order-2">
-            <div className="absolute -left-5 top-10 size-20 rotate-[-10deg] rounded-[1.5rem] border border-gold/50 bg-gold/10" />
-            <div className="absolute -right-4 bottom-12 size-24 rotate-12 rounded-full border border-paper/15 bg-paper/5" />
-            <div className="relative rotate-[2deg] rounded-[2.5rem] border-8 border-paper bg-paper p-2 shadow-card transition-transform duration-300 hover:rotate-0">
-              <ImagePlaceholder label="Warm professional portrait of Afeez" className="aspect-[4/5] min-h-0 rounded-[2rem]" />
-            </div>
-            <div className="absolute -bottom-4 left-5 flex items-center gap-3 rounded-2xl border border-gold/40 bg-paper px-4 py-3 text-ink shadow-card">
-              <span className="flex size-9 items-center justify-center rounded-xl bg-gold"><Star className="size-4 fill-current text-gold-foreground" /></span>
-              <div><p className="text-sm font-bold">Based in Ilorin</p><p className="text-xs text-muted-foreground">Working across disciplines</p></div>
-            </div>
-          </div>
+
         </div>
       </section>
 
-      <section className="bg-sun-soft py-20 md:py-28">
-        <div className="site-container">
-          <div className="grid gap-5 md:grid-cols-2 md:items-start">
+      {/* Gold gap — mobile only, makes sections feel like floating cards */}
+      <div className="h-3 bg-gold lg:hidden" />
 
-            {/* LEFT column: heading block + 2 cards below it */}
-            <div className="flex flex-col gap-5">
-              <div className="pb-3">
-                <p className="eyebrow text-gold-strong">Ways to work together</p>
-                <h2 className="mt-4 font-serif text-5xl leading-[1.05] md:text-7xl">
-                  How can<br />
-                  <span className="font-bold">I help{" "}
-                    <span className="relative inline-block whitespace-nowrap">
-                      you?
-                      <svg
-                        aria-hidden="true"
-                        viewBox="0 0 200 80"
-                        preserveAspectRatio="none"
-                        fill="none"
-                        style={{
-                          position: "absolute",
-                          top: "-0.2em",
-                          left: "-0.3em",
-                          width: "calc(100% + 0.6em)",
-                          height: "calc(100% + 0.45em)",
-                          overflow: "visible",
-                          pointerEvents: "none",
-                        }}
-                      >
-                        <path
-                          d="M 183 44 C 182 16, 146 1, 100 2 C 54 3, 17 18, 16 40 C 15 62, 53 78, 100 78 C 148 78, 180 64, 184 54"
-                          stroke="var(--gold)"
-                          strokeWidth="5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          vectorEffect="non-scaling-stroke"
-                        />
-                      </svg>
-                    </span>
-                  </span>
-                </h2>
-                <p className="mt-6 max-w-sm leading-7 text-muted-foreground">One professional ecosystem. Four distinct pathways to solve meaningful problems, build capability, and create work that lasts.</p>
+      <section className="rounded-[1.5rem] bg-sun-soft py-10 md:py-28 lg:rounded-none">
+        <div className="site-container">
+
+          {/* ── MOBILE layout ── */}
+          <div className="md:hidden">
+            <p className="eyebrow text-center text-gold-strong">Ways to work together</p>
+            <h2 className="mt-3 text-center font-serif text-3xl font-bold leading-tight">
+              How can I help{" "}
+              <span className="relative inline-block whitespace-nowrap">
+                you?
+                <svg aria-hidden="true" viewBox="0 0 200 80" preserveAspectRatio="none" fill="none"
+                  style={{ position: "absolute", top: "-0.2em", left: "-0.3em", width: "calc(100% + 0.6em)", height: "calc(100% + 0.45em)", overflow: "visible", pointerEvents: "none" }}>
+                  <path d="M 183 44 C 182 16, 146 1, 100 2 C 54 3, 17 18, 16 40 C 15 62, 53 78, 100 78 C 148 78, 180 64, 184 54"
+                    stroke="var(--gold)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+                </svg>
+              </span>
+            </h2>
+            <p className="mt-3 text-center text-sm leading-6 text-muted-foreground">Four pathways to solve problems and create lasting value.</p>
+            <p className="mt-2 flex items-center justify-center gap-1.5 text-xs font-semibold text-gold-strong">
+              Swipe to explore <ArrowRight className="size-3.5" />
+            </p>
+
+            {/* Horizontal swipe carousel with right-edge fade hint */}
+            <div className="relative mt-5">
+              <div
+                className="flex gap-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                style={{ scrollSnapType: "x mandatory" }}
+              >
+                {pillars.map((pillar) => (
+                  <div key={pillar.number} className="flex flex-shrink-0 flex-col" style={{ width: "78vw", maxWidth: "300px", scrollSnapAlign: "start" }}>
+                    <PillarCard pillar={pillar} className="flex-1" />
+                  </div>
+                ))}
+                <div className="flex-shrink-0 self-start" style={{ width: "62vw", maxWidth: "240px", scrollSnapAlign: "start" }}>
+                  <MoreCard />
+                </div>
               </div>
-              <PillarCard pillar={pillars[0]} />
-              <PillarCard pillar={pillars[1]} />
+              {/* Right-edge gradient — signals more cards to the right */}
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-14 bg-gradient-to-l from-sun-soft to-transparent" />
             </div>
-
-            {/* RIGHT column: 2 cards + "and more" CTA starting at top — naturally offset from left cards */}
-            <div className="flex flex-col gap-5">
-              <PillarCard pillar={pillars[2]} />
-              <PillarCard pillar={pillars[3]} />
-              <MoreCard />
-            </div>
-
           </div>
+
+          {/* ── DESKTOP layout (unchanged) ── */}
+          <div className="hidden md:block">
+            <div className="grid gap-5 md:grid-cols-2 md:items-start">
+              <div className="flex flex-col gap-5">
+                <div className="pb-3">
+                  <p className="eyebrow text-gold-strong">Ways to work together</p>
+                  <h2 className="mt-4 font-serif text-5xl leading-[1.05] md:text-7xl">
+                    How can<br />
+                    <span className="font-bold">I help{" "}
+                      <span className="relative inline-block whitespace-nowrap">
+                        you?
+                        <svg aria-hidden="true" viewBox="0 0 200 80" preserveAspectRatio="none" fill="none"
+                          style={{ position: "absolute", top: "-0.2em", left: "-0.3em", width: "calc(100% + 0.6em)", height: "calc(100% + 0.45em)", overflow: "visible", pointerEvents: "none" }}>
+                          <path d="M 183 44 C 182 16, 146 1, 100 2 C 54 3, 17 18, 16 40 C 15 62, 53 78, 100 78 C 148 78, 180 64, 184 54"
+                            stroke="var(--gold)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+                        </svg>
+                      </span>
+                    </span>
+                  </h2>
+                  <p className="mt-6 max-w-sm leading-7 text-muted-foreground">One professional ecosystem. Four distinct pathways to solve meaningful problems, build capability, and create work that lasts.</p>
+                </div>
+                <PillarCard pillar={pillars[0]} />
+                <PillarCard pillar={pillars[1]} />
+              </div>
+              <div className="flex flex-col gap-5">
+                <PillarCard pillar={pillars[2]} />
+                <PillarCard pillar={pillars[3]} />
+                <MoreCard />
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      <section className="bg-background">
-        <div className="site-container grid items-center gap-10 py-20 md:grid-cols-[0.85fr_1.15fr] md:gap-20 md:py-28">
-          <ImagePlaceholder label="Afeez in his workspace or speaking" className="aspect-[4/5] min-h-0 shadow-card" />
-          <div>
+      <div className="h-3 bg-gold lg:hidden" />
+
+      <section className="rounded-[1.5rem] bg-background lg:rounded-none">
+        {/* Mobile layout — full-width image, text below */}
+        <div className="md:hidden">
+          <img
+            src="/images/afeez-speaking.webp"
+            alt="Afeez Amusa Onireke speaking at an event"
+            className="w-full rounded-[1.5rem] aspect-[3/4] object-cover object-top shadow-card"
+          />
+          <div className="px-5 pt-6 pb-10">
+            <div className="h-1 w-10 rounded-full bg-gold mb-4" />
             <p className="eyebrow text-gold-strong">A multidisciplinary journey</p>
-            <h2 className="mt-5 font-serif text-5xl font-semibold leading-[0.98] md:text-7xl">Craft, knowledge, and enterprise belong together.</h2>
-            <div className="mt-7 h-2 w-24 rounded-full bg-gold/55" />
-            <p className="mt-7 max-w-xl text-lg leading-8 text-muted-foreground">Afeez has built his career where ideas meet execution—writing with purpose, creating enduring spaces, improving enterprise operations, and teaching others what works.</p>
-            <p className="mt-4 max-w-xl leading-7 text-muted-foreground">His work is united by one conviction: lasting value comes from clarity, discipline, and a deep respect for craft.</p>
-            <Button asChild variant="ink" size="lg" className="mt-9"><Link to="/about">Read my story <ArrowRight /></Link></Button>
+            <h2 className="mt-3 font-serif text-[2rem] font-semibold leading-tight">Craft, knowledge, and enterprise belong together.</h2>
+            <p className="mt-4 text-sm leading-6 text-muted-foreground">Afeez has built his career where ideas meet execution—writing with purpose, creating enduring spaces, improving enterprise operations, and teaching others what works.</p>
+            <Button asChild variant="ink" size="lg" className="mt-6 w-full justify-center"><Link to="/about">Read my story <ArrowRight /></Link></Button>
+          </div>
+        </div>
+        {/* Desktop layout — unchanged */}
+        <div className="hidden md:block">
+          <div className="site-container grid items-center gap-10 py-20 md:grid-cols-[0.85fr_1.15fr] md:gap-20 md:py-28">
+            <img
+              src="/images/afeez-speaking.webp"
+              alt="Afeez Amusa Onireke speaking at an event"
+              className="aspect-[4/5] w-full rounded-[2rem] object-cover object-top shadow-card"
+            />
+            <div>
+              <p className="eyebrow text-gold-strong">A multidisciplinary journey</p>
+              <h2 className="mt-5 font-serif text-5xl font-semibold leading-[0.98] md:text-7xl">Craft, knowledge, and enterprise belong together.</h2>
+              <div className="mt-7 h-2 w-24 rounded-full bg-gold/55" />
+              <p className="mt-7 max-w-xl text-lg leading-8 text-muted-foreground">Afeez has built his career where ideas meet execution—writing with purpose, creating enduring spaces, improving enterprise operations, and teaching others what works.</p>
+              <p className="mt-4 max-w-xl leading-7 text-muted-foreground">His work is united by one conviction: lasting value comes from clarity, discipline, and a deep respect for craft.</p>
+              <Button asChild variant="ink" size="lg" className="mt-9"><Link to="/about">Read my story <ArrowRight /></Link></Button>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-ink py-20 text-paper md:py-28">
+      <div className="h-3 bg-gold lg:hidden" />
+
+      <section className="rounded-[1.5rem] bg-ink py-20 text-paper lg:rounded-none md:py-28">
         <div className="site-container">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div><p className="eyebrow text-gold">Selected work</p><h2 className="mt-4 font-serif text-5xl md:text-7xl">Proof in the practice.</h2></div><Button asChild variant="goldOutline" size="lg"><Link to="/portfolio">View Portfolio <ArrowUpRight /></Link></Button></div>
-           <div className="mt-12 grid gap-5 md:grid-cols-3">
-             {work.map((item, index) => <article key={item.category} className="group rounded-[2rem] bg-paper/5 p-3 transition-all duration-300 hover:-translate-y-2 hover:bg-paper/10"><ImagePlaceholder label={item.image} dark className="aspect-[4/3] min-h-0 rounded-[1.5rem]" /><div className="px-3 pb-3 pt-6"><div className="flex items-center justify-between"><p className="eyebrow text-gold">{item.category}</p><span className="text-xs text-paper/40">0{index + 1}</span></div><h3 className="mt-3 max-w-sm font-serif text-2xl leading-tight">{item.title}</h3></div></article>)}
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="text-center md:text-left">
+              <p className="eyebrow text-gold">Selected work</p>
+              <h2 className="mt-4 font-serif text-3xl md:text-7xl">Proof in the practice.</h2>
+            </div>
+            <div className="hidden md:block">
+              <Button asChild variant="goldOutline" size="lg">
+                <Link to="/portfolio">View Portfolio <ArrowUpRight /></Link>
+              </Button>
+            </div>
+          </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {work.map((item, index) => (
+              <article
+                key={item.category}
+                className="group rounded-[2rem] border border-paper/20 bg-paper/5 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.09)] transition-all duration-300 hover:-translate-y-2 hover:border-paper/35 hover:bg-paper/10 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_0_24px_rgba(200,146,42,0.12)]"
+              >
+                <ImagePlaceholder label={item.image} dark className="aspect-[4/3] min-h-0 rounded-[1.5rem]" />
+                <div className="px-3 pb-3 pt-6">
+                  <div className="flex items-center justify-between">
+                    <p className="eyebrow text-gold">{item.category}</p>
+                    <span className="text-xs text-paper/40">0{index + 1}</span>
+                  </div>
+                  <h3 className="mt-3 max-w-sm font-serif text-2xl leading-tight">{item.title}</h3>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-paper py-20 md:py-28">
+      <div className="h-3 bg-gold lg:hidden" />
+
+      <section className="rounded-[1.5rem] bg-paper py-10 lg:rounded-none md:py-28">
         <div className="site-container">
-          <div className="max-w-3xl"><p className="eyebrow text-gold-strong">Books, courses & resources</p><h2 className="mt-4 font-serif text-5xl leading-none md:text-7xl">Knowledge made useful.</h2></div>
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {products.map((item) => <article key={item.title} className="group flex min-h-[26rem] flex-col rounded-[2rem] border border-gold/25 bg-ink p-7 text-paper shadow-card transition-all duration-300 hover:-translate-y-2 hover:border-gold/60 hover:shadow-card-hover"><div className="flex items-start justify-between"><span className="flex size-12 items-center justify-center rounded-2xl bg-gold text-gold-foreground shadow-soft"><BookOpen className="size-5" /></span><span className="font-serif text-5xl text-gold/35">{item.accent}</span></div><div className="mt-auto"><p className="eyebrow text-gold">{item.type}</p><h3 className="mt-3 font-serif text-3xl font-semibold leading-tight">{item.title}</h3><p className="mt-4 text-sm leading-6 text-paper/65">{item.detail}</p><Link to={item.type === "Book" ? "/books" : "/courses"} className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-gold">Explore <ArrowUpRight className="size-4" /></Link></div></article>)}
+
+          {/* ── MOBILE layout ── */}
+          <div className="md:hidden">
+            <p className="eyebrow text-center text-gold-strong">Books, courses & resources</p>
+            <h2 className="mt-3 text-center font-serif text-3xl font-bold leading-tight">Knowledge made useful.</h2>
+            <p className="mt-2 flex items-center justify-center gap-1.5 text-xs font-semibold text-gold-strong">
+              Swipe to explore <ArrowRight className="size-3.5" />
+            </p>
+            <div className="relative mt-5">
+              <div
+                className="flex gap-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                style={{ scrollSnapType: "x mandatory" }}
+              >
+                {products.map((item) => (
+                  <div key={item.title} className="flex flex-shrink-0 flex-col" style={{ width: "78vw", maxWidth: "300px", scrollSnapAlign: "start" }}>
+                    <article className="group flex flex-1 flex-col rounded-[2rem] border border-gold/25 bg-ink p-7 text-paper shadow-card">
+                      <div className="flex items-start justify-between">
+                        <span className="flex size-12 items-center justify-center rounded-2xl bg-gold text-gold-foreground shadow-soft"><BookOpen className="size-5" /></span>
+                        <span className="font-serif text-5xl text-gold/35">{item.accent}</span>
+                      </div>
+                      <div className="mt-auto pt-8">
+                        <p className="eyebrow text-gold">{item.type}</p>
+                        <h3 className="mt-3 font-serif text-2xl font-semibold leading-tight">{item.title}</h3>
+                        <p className="mt-4 text-sm leading-6 text-paper/65">{item.detail}</p>
+                        <Link to={item.type === "Book" ? "/books" : "/courses"} className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-gold">Explore <ArrowUpRight className="size-4" /></Link>
+                      </div>
+                    </article>
+                  </div>
+                ))}
+              </div>
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-14 bg-gradient-to-l from-paper to-transparent" />
+            </div>
           </div>
+
+          {/* ── DESKTOP layout (unchanged) ── */}
+          <div className="hidden md:block">
+            <div className="max-w-3xl"><p className="eyebrow text-gold-strong">Books, courses & resources</p><h2 className="mt-4 font-serif text-5xl leading-none md:text-7xl">Knowledge made useful.</h2></div>
+            <div className="mt-12 grid gap-5 md:grid-cols-3">
+              {products.map((item) => <article key={item.title} className="group flex min-h-[26rem] flex-col rounded-[2rem] border border-gold/25 bg-ink p-7 text-paper shadow-card transition-all duration-300 hover:-translate-y-2 hover:border-gold/60 hover:shadow-card-hover"><div className="flex items-start justify-between"><span className="flex size-12 items-center justify-center rounded-2xl bg-gold text-gold-foreground shadow-soft"><BookOpen className="size-5" /></span><span className="font-serif text-5xl text-gold/35">{item.accent}</span></div><div className="mt-auto"><p className="eyebrow text-gold">{item.type}</p><h3 className="mt-3 font-serif text-3xl font-semibold leading-tight">{item.title}</h3><p className="mt-4 text-sm leading-6 text-paper/65">{item.detail}</p><Link to={item.type === "Book" ? "/books" : "/courses"} className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-gold">Explore <ArrowUpRight className="size-4" /></Link></div></article>)}
+            </div>
+          </div>
+
         </div>
       </section>
 
-      <section className="border-y border-gold/20 bg-ink py-20 text-paper md:py-28">
+      <div className="h-3 bg-gold lg:hidden" />
+
+      <section className="rounded-[1.5rem] bg-ink py-10 text-paper lg:rounded-none lg:border-y lg:border-gold/20 md:py-28">
         <div className="site-container">
-          <p className="eyebrow text-gold-strong">What collaborators say</p>
-          <div className="mt-9 grid gap-10 md:grid-cols-3">
-            {["Afeez brings rare clarity to complex work. He listens carefully, thinks deeply, and delivers with conviction.", "The quality of the craftsmanship was exceptional—precise, professional, and built to last.", "His ability to connect systems knowledge with real operational needs made the engagement genuinely valuable."].map((quote, index) => <blockquote key={quote} className="rounded-[2rem] border border-gold/25 bg-paper/5 p-7 shadow-card"><Quote className="size-8 text-gold" /><p className="mt-5 font-serif text-2xl leading-9">“{quote}”</p><footer className="mt-6 text-xs font-semibold text-paper/55">Client testimonial <span className="text-gold">0{index + 1}</span></footer></blockquote>)}
+
+          {/* ── MOBILE layout ── */}
+          <div className="md:hidden">
+            <p className="eyebrow text-center text-gold-strong">What collaborators say</p>
+            <h2 className="mt-3 text-center font-serif text-3xl font-bold leading-tight">Kind words.</h2>
+            <p className="mt-2 flex items-center justify-center gap-1.5 text-xs font-semibold text-gold-strong">
+              Swipe to read <ArrowRight className="size-3.5" />
+            </p>
+            <div className="relative mt-5">
+              <div
+                className="flex gap-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                style={{ scrollSnapType: "x mandatory" }}
+              >
+                {["Afeez brings rare clarity to complex work. He listens carefully, thinks deeply, and delivers with conviction.", "The quality of the craftsmanship was exceptional—precise, professional, and built to last.", "His ability to connect systems knowledge with real operational needs made the engagement genuinely valuable."].map((quote, index) => (
+                  <div key={quote} className="flex flex-shrink-0 flex-col" style={{ width: "82vw", maxWidth: "320px", scrollSnapAlign: "start" }}>
+                    <blockquote className="flex flex-1 flex-col rounded-[2rem] border border-gold/25 bg-paper/5 p-7 shadow-card">
+                      <Quote className="size-8 text-gold" />
+                      <p className="mt-5 font-serif text-xl leading-8">"{quote}"</p>
+                      <footer className="mt-auto pt-6 text-xs font-semibold text-paper/55">Client testimonial <span className="text-gold">0{index + 1}</span></footer>
+                    </blockquote>
+                  </div>
+                ))}
+              </div>
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-14 bg-gradient-to-l from-ink to-transparent" />
+            </div>
           </div>
+
+          {/* ── DESKTOP layout (unchanged) ── */}
+          <div className="hidden md:block">
+            <p className="eyebrow text-gold-strong">What collaborators say</p>
+            <div className="mt-9 grid gap-10 md:grid-cols-3">
+              {["Afeez brings rare clarity to complex work. He listens carefully, thinks deeply, and delivers with conviction.", "The quality of the craftsmanship was exceptional—precise, professional, and built to last.", "His ability to connect systems knowledge with real operational needs made the engagement genuinely valuable."].map((quote, index) => <blockquote key={quote} className="rounded-[2rem] border border-gold/25 bg-paper/5 p-7 shadow-card"><Quote className="size-8 text-gold" /><p className="mt-5 font-serif text-2xl leading-9">"{quote}"</p><footer className="mt-6 text-xs font-semibold text-paper/55">Client testimonial <span className="text-gold">0{index + 1}</span></footer></blockquote>)}
+            </div>
+          </div>
+
         </div>
       </section>
+
+      <div className="h-3 bg-gold lg:hidden" />
 
       <MediaCarousel />
 
-      <section className="site-container pb-20 md:pb-28">
-        <div className="grid overflow-hidden rounded-[2.5rem] bg-ink text-paper shadow-card md:grid-cols-[1.2fr_0.8fr]">
-          <div className="p-7 sm:p-10 md:p-14"><p className="eyebrow text-gold">The lasting value letter</p><h2 className="mt-5 max-w-2xl font-serif text-4xl leading-tight md:text-6xl">Useful ideas for better work, stronger systems, and a more intentional life.</h2><p className="mt-5 max-w-xl leading-7 text-paper/65">Occasional notes on writing, craftsmanship, enterprise technology, education, and the lessons connecting them.</p><form className="mt-8 flex max-w-xl flex-col gap-3 sm:flex-row" onSubmit={(event) => event.preventDefault()}><label htmlFor="newsletter-email" className="sr-only">Email address</label><input id="newsletter-email" type="email" placeholder="Your email address" className="h-14 min-w-0 flex-1 rounded-full border border-paper/25 bg-paper/5 px-5 text-sm text-paper outline-none placeholder:text-paper/40 focus:border-gold" /><Button type="submit" variant="gold" size="lg">Join the letter <ArrowRight /></Button></form></div>
-          <div className="flex flex-col justify-between border-t border-paper/15 p-7 sm:p-10 md:border-l md:border-t-0 md:p-14"><div><p className="eyebrow text-gold">Have a project in mind?</p><h3 className="mt-5 font-serif text-4xl leading-tight">Let’s create something of lasting value.</h3></div><Button asChild variant="paper" size="lg" className="mt-12 w-fit"><Link to="/contact">Start a conversation <ArrowUpRight /></Link></Button></div>
+      <div className="h-3 bg-gold lg:hidden" />
+
+      <section className="rounded-[1.5rem] bg-ink text-paper lg:rounded-none">
+
+        {/* ── MOBILE layout ── */}
+        <div className="md:hidden">
+          <div className="px-5 pt-8 pb-7">
+            <p className="eyebrow text-gold">The lasting value letter</p>
+            <h2 className="mt-4 font-serif text-3xl font-bold leading-tight">Useful ideas for better work and a more intentional life.</h2>
+            <p className="mt-4 text-sm leading-6 text-paper/65">Occasional notes on writing, craftsmanship, enterprise technology, education, and the lessons connecting them.</p>
+            <form className="mt-7 flex flex-col gap-3" onSubmit={(event) => event.preventDefault()}>
+              <label htmlFor="newsletter-email-m" className="sr-only">Email address</label>
+              <input id="newsletter-email-m" type="email" placeholder="Your email address" className="h-14 w-full rounded-full border border-paper/25 bg-paper/5 px-5 text-sm text-paper outline-none placeholder:text-paper/40 focus:border-gold" />
+              <Button type="submit" variant="gold" size="lg" className="w-full justify-center">Join the letter <ArrowRight /></Button>
+            </form>
+          </div>
+          <div className="border-t border-paper/15 px-5 pt-7 pb-9">
+            <p className="eyebrow text-gold">Have a project in mind?</p>
+            <h3 className="mt-4 font-serif text-2xl leading-tight">Let’s create something of lasting value.</h3>
+            <Button asChild variant="paper" size="lg" className="mt-6 w-full justify-center"><Link to="/contact">Start a conversation <ArrowUpRight /></Link></Button>
+          </div>
         </div>
+
+        {/* ── DESKTOP layout (unchanged) ── */}
+        <div className="hidden md:block">
+          <div className="site-container pb-20 pt-4 md:pb-28 md:pt-4">
+            <div className="grid overflow-hidden rounded-[2.5rem] bg-ink shadow-card md:grid-cols-[1.2fr_0.8fr]">
+              <div className="p-7 sm:p-10 md:p-14"><p className="eyebrow text-gold">The lasting value letter</p><h2 className="mt-5 max-w-2xl font-serif text-4xl leading-tight md:text-6xl">Useful ideas for better work, stronger systems, and a more intentional life.</h2><p className="mt-5 max-w-xl leading-7 text-paper/65">Occasional notes on writing, craftsmanship, enterprise technology, education, and the lessons connecting them.</p><form className="mt-8 flex max-w-xl flex-col gap-3 sm:flex-row" onSubmit={(event) => event.preventDefault()}><label htmlFor="newsletter-email" className="sr-only">Email address</label><input id="newsletter-email" type="email" placeholder="Your email address" className="h-14 min-w-0 flex-1 rounded-full border border-paper/25 bg-paper/5 px-5 text-sm text-paper outline-none placeholder:text-paper/40 focus:border-gold" /><Button type="submit" variant="gold" size="lg" className="w-full sm:w-auto">Join the letter <ArrowRight /></Button></form></div>
+              <div className="flex flex-col justify-between border-t border-paper/15 p-7 sm:p-10 md:border-l md:border-t-0 md:p-14"><div><p className="eyebrow text-gold">Have a project in mind?</p><h3 className="mt-5 font-serif text-4xl leading-tight">Let’s create something of lasting value.</h3></div><Button asChild variant="paper" size="lg" className="mt-12 w-fit"><Link to="/contact">Start a conversation <ArrowUpRight /></Link></Button></div>
+            </div>
+          </div>
+        </div>
+
       </section>
+
+      {/* Gold gap before footer — mobile only */}
+      <div className="h-3 bg-gold lg:hidden" />
     </main>
   );
 }
